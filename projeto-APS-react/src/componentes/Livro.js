@@ -40,7 +40,7 @@ export class Livro extends Component {
 
   emprestado() {
     var { emprestado } = this.state;
-    return emprestado === true ? "Sim" : "Nxão";
+    return emprestado === true ? "Sim" : "Não";
   }
 
   render() {
