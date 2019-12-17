@@ -83,7 +83,7 @@
       "edicao": "1",
       "emprestado": true,
       "url": "https://i.ibb.co/v3wfd8N/id03.jpg",
-      "statusLivro": "cancelado"
+      "statusLivro": "realizado"
     },
     {
       "id": 4,
@@ -131,7 +131,7 @@
       "idDono": 2,
       "idProduto": 3,
       "data": "16/10/2018",
-      "situacao": "cancelado"
+      "situacao": "realizado"
     },
     {
       "id": 4,
