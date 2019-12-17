@@ -81,7 +81,7 @@
       "autor": "Clarice Lispector",
       "categoria": "Romance",
       "edicao": "1",
-      "emprestado": true,
+      "emprestado": false,
       "url": "https://i.ibb.co/v3wfd8N/id03.jpg",
       "statusLivro": "realizado"
     },
