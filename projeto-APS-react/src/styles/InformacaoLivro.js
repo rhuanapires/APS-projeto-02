@@ -1,5 +1,10 @@
 const imgLivro = {
-  height: 200,
+  height: 280,
+  borderRadius: 20,
+  boxShadow: "5px 5px 5px #00000060"
+};
+export const imgLivroPedido = {
+  height: 230,
   borderRadius: 20,
   boxShadow: "5px 5px 5px #00000060"
 };

@@ -32,7 +32,7 @@ export class ListaPedidos extends Component {
             {this.state.pedidos.map(x => (
               <tr>
                 <th scope="row">
-                  <a href="/{x.id}">{x.id}</a>
+                  <a href={`/pedidos/${x.id}`}>{x.id}</a>
                 </th>
                 <td>{x.idCliente}</td>
                 <td>{x.idProduto}</td>

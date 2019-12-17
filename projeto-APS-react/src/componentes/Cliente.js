@@ -7,6 +7,7 @@ import {
   subtitles
 } from "../styles/InformacaoLivro";
 import imgLivro from "../styles/ListaLivros";
+import Dialog from "react-bootstrap-dialog";
 
 export class Cliente extends Component {
   constructor(props, match) {
@@ -86,66 +87,134 @@ export class Cliente extends Component {
   };
 
   confirmaEmprestimo = livro => {
-    axios
-      .put("http://localhost:3000/livros/" + livro.id, {
-        id: livro.id,
-        idDono: livro.idDono,
-        nome: livro.nome,
-        autor: livro.autor,
-        categoria: livro.categoria,
-        edicao: livro.edicao,
-        emprestado: !livro.emprestado,
-        url: livro.url,
-        statusLivro: "enviado"
-      })
-      .then(response => {
-        axios.get("http://localhost:3000/pedidoEmprestimo/").then(response => {
-          console.log(response.data);
+    this.dialog.show({
+      title: "Confirmação de Empréstimo",
+      body: "Deseja confirmar o empréstimo do livro ?",
+      actions: [
+        Dialog.CancelAction(),
+        Dialog.OKAction(() => {
+          axios
+            .put("http://localhost:3000/livros/" + livro.id, {
+              id: livro.id,
+              idDono: livro.idDono,
+              nome: livro.nome,
+              autor: livro.autor,
+              categoria: livro.categoria,
+              edicao: livro.edicao,
+              emprestado: !livro.emprestado,
+              url: livro.url,
+              statusLivro: "enviado"
+            })
+            .then(response => {
+              axios
+                .get("http://localhost:3000/pedidoEmprestimo/")
+                .then(response => {
+                  console.log(response.data);
 
-          const listaEmprestimo = response.data.filter(
-            p => p.idProduto === livro.id && p.situacao === "realizado"
-          );
-          console.log(listaEmprestimo);
-          const pedido = listaEmprestimo[0];
-          axios.put("http://localhost:3000/pedidoEmprestimo/" + pedido.id, {
-            ...pedido,
-            situacao: "enviado"
-          });
-          this.getListaLivros();
-        });
-      });
+                  const listaEmprestimo = response.data.filter(
+                    p => p.idProduto === livro.id && p.situacao === "realizado"
+                  );
+                  console.log(listaEmprestimo);
+                  const pedido = listaEmprestimo[0];
+                  axios
+                    .put(
+                      "http://localhost:3000/pedidoEmprestimo/" + pedido.id,
+                      {
+                        ...pedido,
+                        situacao: "enviado"
+                      }
+                    )
+                    .then(response => this.emprestimoOk());
+                  this.getListaLivros();
+                });
+            });
+        })
+      ],
+      bsSize: "small",
+      onHide: dialog => {
+        dialog.hide();
+        console.log("closed by clicking background.");
+      }
+    });
   };
+
+  emprestimoOk = () =>
+    this.dialog.show({
+      title: "Sucesso",
+      body: "Empréstimo efetuado com sucesso!",
+      actions: [Dialog.OKAction()],
+      bsSize: "small",
+      onHide: dialog => {
+        dialog.hide();
+        console.log("closed by clicking background.");
+      }
+    });
 
   confirmaDevolucao = livro => {
-    axios
-      .put("http://localhost:3000/livros/" + livro.id, {
-        id: livro.id,
-        idDono: livro.idDono,
-        nome: livro.nome,
-        autor: livro.autor,
-        categoria: livro.categoria,
-        edicao: livro.edicao,
-        emprestado: !livro.emprestado,
-        url: livro.url,
-        statusLivro: "finalizado"
-      })
-      .then(response => {
-        axios.get("http://localhost:3000/pedidoEmprestimo/").then(response => {
-          console.log(response.data);
+    this.dialog.show({
+      title: "Confirmação de Devolução",
+      body: "Deseja confirmar a devolução do livro ?",
+      actions: [
+        Dialog.CancelAction(),
+        Dialog.OKAction(() => {
+          axios
+            .put("http://localhost:3000/livros/" + livro.id, {
+              id: livro.id,
+              idDono: livro.idDono,
+              nome: livro.nome,
+              autor: livro.autor,
+              categoria: livro.categoria,
+              edicao: livro.edicao,
+              emprestado: !livro.emprestado,
+              url: livro.url,
+              statusLivro: "finalizado"
+            })
+            .then(response => {
+              axios
+                .get("http://localhost:3000/pedidoEmprestimo/")
+                .then(response => {
+                  console.log(response.data);
 
-          const listaEmprestimo = response.data.filter(
-            p => p.idProduto === livro.id && p.situacao === "enviado"
-          );
-          console.log(listaEmprestimo);
-          const pedido = listaEmprestimo[0];
-          axios.put("http://localhost:3000/pedidoEmprestimo/" + pedido.id, {
-            ...pedido,
-            situacao: "finalizado"
-          });
-          this.getListaLivros();
-        });
-      });
+                  const listaEmprestimo = response.data.filter(
+                    p => p.idProduto === livro.id && p.situacao === "enviado"
+                  );
+                  console.log(listaEmprestimo);
+                  const pedido = listaEmprestimo[0];
+                  axios
+                    .put(
+                      "http://localhost:3000/pedidoEmprestimo/" + pedido.id,
+                      {
+                        ...pedido,
+                        situacao: "finalizado"
+                      }
+                    )
+                    .then(response => {
+                      this.devolucaooOk();
+                    });
+                  this.getListaLivros();
+                });
+            });
+        })
+      ],
+      bsSize: "small",
+      onHide: dialog => {
+        dialog.hide();
+        console.log("closed by clicking background.");
+      }
+    });
   };
+
+  devolucaooOk = () =>
+    this.dialog.show({
+      title: "Sucesso",
+      body: "Devolução efetuada com sucesso!",
+      actions: [Dialog.OKAction()],
+      bsSize: "small",
+      onHide: dialog => {
+        dialog.hide();
+        console.log("closed by clicking background.");
+      }
+    });
 
   render() {
     return (
@@ -187,7 +256,7 @@ export class Cliente extends Component {
             <div></div>
             <h1>Livros</h1>
           </div>
-          <table class="table">
+          <table class="table listas">
             <thead class="thead-main">
               <tr>
                 <th scope="col">#</th>
@@ -222,6 +291,11 @@ export class Cliente extends Component {
             </tbody>
           </table>
         </div>
+        <Dialog
+          ref={el => {
+            this.dialog = el;
+          }}
+        />
       </div>
     );
   }
