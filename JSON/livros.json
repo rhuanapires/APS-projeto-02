@@ -38,93 +38,123 @@
       "estado": "RN",
       "idade": "42",
       "email": "anamaria_silva@gmail.com",
-     "url": "https://i.ibb.co/G51gm60/c04.jpg"
+      "url": "https://i.ibb.co/G51gm60/c04.jpg"
     },
     {
-        "id": 5,
-        "nome": "Paulo Tomás",
-        "cpf": "631.319.187.12",
-        "cidade": "São Leopoldo",
-        "estado": "RS",
-        "idade": "27",
-        "email": "tomas_eq_ufrgs@gmail.com",
-        "url": "https://i.ibb.co/fkMyZB0/c05.jpg"
+      "id": 5,
+      "nome": "Paulo Tomás",
+      "cpf": "631.319.187.12",
+      "cidade": "São Leopoldo",
+      "estado": "RS",
+      "idade": "27",
+      "email": "tomas_eq_ufrgs@gmail.com",
+      "url": "https://i.ibb.co/fkMyZB0/c05.jpg"
     }
   ],
   "livros": [
     {
       "id": 1,
+      "idDono": 4,
       "nome": "Harry Potter e o Enigma do Príncipe",
       "autor": "J K Rowling",
       "categoria": "Fantasia",
       "edicao": "1",
       "emprestado": true,
-      "url": "https://i.ibb.co/q9pzGYR/id01.jpg"
+      "url": "https://i.ibb.co/q9pzGYR/id01.jpg",
+      "statusLivro": "enviado"
     },
     {
       "id": 2,
+      "idDono": 2,
       "nome": "A Origem",
       "autor": "Dan Brown",
       "categoria": "Suspense",
       "edicao": "1",
-      "emprestado": true,
-      "url": "https://i.ibb.co/c1xbT4Z/id02.jpg"
+      "emprestado": false,
+      "url": "https://i.ibb.co/c1xbT4Z/id02.jpg",
+      "statusLivro": "finalizado"
     },
     {
       "id": 3,
+      "idDono": 2,
       "nome": "A Paixão Segundo GH",
       "autor": "Clarice Lispector",
       "categoria": "Romance",
       "edicao": "1",
       "emprestado": false,
-      "url": "https://i.ibb.co/v3wfd8N/id03.jpg"
+      "url": "https://i.ibb.co/v3wfd8N/id03.jpg",
+      "statusLivro": "finalizado"
     },
     {
       "id": 4,
+      "idDono": 1,
       "nome": "O Pequeno Príncipe",
       "autor": "Antoine De Saint-Exupery",
       "categoria": "Literatura Juvenil",
       "edicao": "48",
       "emprestado": false,
-      "url": "https://i.ibb.co/xS3YpjR/id05.jpg"
+      "url": "https://i.ibb.co/RbkH2pX/id04.jpg",
+      "statusLivro": ""
     },
     {
       "id": 5,
+      "idDono": 5,
       "nome": "Os Sertões",
       "autor": "Euclides da Cunha",
       "categoria": "Romance",
       "edicao": "1",
       "emprestado": false,
-      "url": "https://i.ibb.co/RbkH2pX/id04.jpg"
+      "url": "https://i.ibb.co/xS3YpjR/id05.jpg",
+      "statusLivro": ""
     }
   ],
   "pedidoEmprestimo": [
     {
       "id": 1,
-      "idCliente": "1",
-      "idProduto": "2",
+      "idCliente": 1,
+      "idDono": 2,
+      "idProduto": 2,
       "data": "03/11/2019",
-      "situacao": "enviado"
+      "situacao": "finalizado"
     },
     {
       "id": 2,
-      "idCliente": "3",
-      "idProduto": "1",
+      "idCliente": 3,
+      "idDono": 4,
+      "idProduto": 1,
       "data": "01/11/2019",
       "situacao": "enviado"
     },
     {
       "id": 3,
-      "idCliente": "1",
-      "idProduto": "3",
+      "idCliente": 1,
+      "idDono": 2,
+      "idProduto": 3,
       "data": "16/10/2018",
       "situacao": "cancelado"
     },
     {
       "id": 4,
-      "idCliente": "3",
-      "idProduto": "5",
+      "idCliente": 3,
+      "idDono": 5,
+      "idProduto": 5,
       "data": "09/10/2019",
+      "situacao": "finalizado"
+    },
+    {
+      "id": 69188,
+      "idCliente": 1,
+      "idDono": 2,
+      "idProduto": 3,
+      "data": "17/12/2019",
+      "situacao": "finalizado"
+    },
+    {
+      "id": 60392,
+      "idCliente": 1,
+      "idDono": 2,
+      "idProduto": 2,
+      "data": "17/12/2019",
       "situacao": "finalizado"
     }
   ]

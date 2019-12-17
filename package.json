@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.7",
+    "bootstrap": "^4.4.1",
+    "react-animated-modal": "^1.1.1",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-bootstrap-dialog": "^0.13.0"
+  }
+}
